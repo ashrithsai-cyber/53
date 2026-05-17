@@ -1,0 +1,289 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:1rem 0 2rem;font-family:var(--font-sans)}
+.tabs{display:flex;gap:6px;margin-bottom:1.25rem;flex-wrap:wrap}
+.tab{padding:7px 16px;border-radius:20px;border:0.5px solid var(--color-border-secondary);font-size:13px;cursor:pointer;background:transparent;color:var(--color-text-secondary);font-family:var(--font-sans);transition:all .15s}
+.tab.on{background:var(--color-background-success);color:var(--color-text-success);border-color:transparent;font-weight:500}
+.sec{display:none}.sec.on{display:block}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:10px}
+.card-head{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card-head i{font-size:18px;color:var(--color-text-secondary)}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.m{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px;text-align:center}
+.m .n{font-size:20px;font-weight:500;color:var(--color-text-primary)}
+.m .l{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+.phase{border-left:3px solid var(--color-border-success);padding-left:12px;margin-bottom:14px;border-radius:0}
+.phase.b{border-color:#378ADD}
+.phase.c{border-color:#BA7517}
+.ph-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px}
+.ph-sub{font-size:11px;color:var(--color-text-secondary);margin-bottom:6px}
+ul.li{list-style:none;padding:0}
+ul.li li{font-size:13px;color:var(--color-text-secondary);padding:3px 0;display:flex;gap:6px}
+ul.li li::before{content:"→";color:var(--color-text-tertiary);flex-shrink:0}
+.day-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.day-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px}
+.day-label{font-size:11px;font-weight:500;color:var(--color-text-secondary);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+.day-name{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px}
+.day-muscles{font-size:11px;color:var(--color-text-secondary)}
+.rest-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px;text-align:center}
+.rest-card .day-name{color:var(--color-text-tertiary)}
+.ex-block{margin-bottom:14px}
+.ex-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px;padding-bottom:4px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.ex-row{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.ex-row:last-child{border-bottom:none}
+.ex-name{font-size:13px;color:var(--color-text-primary)}
+.ex-sets{font-size:12px;color:var(--color-text-secondary);text-align:right;white-space:nowrap}
+.ex-tip{font-size:11px;color:var(--color-text-tertiary);grid-column:1/-1;padding-bottom:2px}
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:500}
+.bg{background:var(--color-background-success);color:var(--color-text-success)}
+.bb{background:var(--color-background-info);color:var(--color-text-info)}
+.ba{background:var(--color-background-warning);color:var(--color-text-warning)}
+.meal-row{display:grid;grid-template-columns:80px 1fr auto;gap:10px;align-items:start;padding:8px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.meal-row:last-child{border-bottom:none}
+.meal-time{font-size:11px;color:var(--color-text-secondary);font-weight:500}
+.meal-food{font-size:13px;color:var(--color-text-primary)}
+.meal-food span{font-size:11px;color:var(--color-text-secondary);display:block;margin-top:2px}
+.meal-cal{font-size:12px;font-weight:500;color:var(--color-text-success);text-align:right;white-space:nowrap}
+.tip-row{display:flex;gap:10px;align-items:flex-start;padding:6px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.tip-row:last-child{border-bottom:none}
+.tip-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.tip-text{font-size:13px;color:var(--color-text-primary)}
+.tip-sub{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+</style>
+
+<div class="wrap">
+<div class="tabs">
+  <button class="tab on" onclick="show('overview',this)">Overview</button>
+  <button class="tab" onclick="show('gym',this)">Gym routine</button>
+  <button class="tab" onclick="show('exercises',this)">Exercises</button>
+  <button class="tab" onclick="show('diet',this)">Diet plan</button>
+  <button class="tab" onclick="show('tips',this)">Key rules</button>
+</div>
+
+<div id="overview" class="sec on">
+  <div class="metrics">
+    <div class="m"><div class="n">~60kg</div><div class="l">Target weight</div></div>
+    <div class="m"><div class="n">2,400</div><div class="l">Daily calories</div></div>
+    <div class="m"><div class="n">150g</div><div class="l">Daily protein</div></div>
+  </div>
+  <div class="card">
+    <div class="card-head"><i class="ti ti-target" aria-hidden="true"></i>Your profile & goal</div>
+    <ul class="li">
+      <li>Body type: skinny-fat — you have low muscle AND some fat. The goal is recomposition — build muscle while losing fat simultaneously.</li>
+      <li>Height/weight: ~5'6", under 65kg — you are in a great position to recomp fast</li>
+      <li>Goal: athletic body — broad shoulders, visible muscle, low body fat, functional strength</li>
+      <li>Timeline: 53 days — you will see serious changes if you train hard and eat right every day</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-head"><i class="ti ti-calendar-week" aria-hidden="true"></i>Weekly structure</div>
+    <div class="day-grid">
+      <div class="day-card"><div class="day-label">Day 1 · Mon</div><div class="day-name">Push</div><div class="day-muscles">Chest · Shoulders · Triceps</div></div>
+      <div class="day-card"><div class="day-label">Day 2 · Tue</div><div class="day-name">Pull</div><div class="day-muscles">Back · Biceps · Rear delts</div></div>
+      <div class="day-card"><div class="day-label">Day 3 · Wed</div><div class="day-name">Legs</div><div class="day-muscles">Quads · Hamstrings · Calves</div></div>
+      <div class="day-card"><div class="day-label">Day 4 · Thu</div><div class="day-name">Push</div><div class="day-muscles">Chest · Shoulders · Triceps</div></div>
+      <div class="day-card"><div class="day-label">Day 5 · Fri</div><div class="day-name">Pull</div><div class="day-muscles">Back · Biceps · Rear delts</div></div>
+      <div class="day-card"><div class="day-label">Day 6 · Sat</div><div class="day-name">Legs + Core</div><div class="day-muscles">Legs · Abs · HIIT cardio</div></div>
+      <div class="rest-card"><div class="day-label">Day 7 · Sun</div><div class="day-name">Rest</div><div class="day-muscles">Walk 20 min only</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head"><i class="ti ti-clock" aria-hidden="true"></i>Daily schedule</div>
+    <ul class="li">
+      <li>6:00 AM — Wake up, drink 500ml water, 10 min light stretch</li>
+      <li>6:30 AM — Fasted 20 min walk or light jog (burns fat)</li>
+      <li>7:00 AM — Breakfast (high protein)</li>
+      <li>5:00 PM — Gym session (60–75 min max)</li>
+      <li>7:00 PM — Dinner</li>
+      <li>9:00 PM — No food after this</li>
+      <li>10:30 PM — Sleep (8 hours minimum)</li>
+    </ul>
+  </div>
+</div>
+
+<div id="gym" class="sec">
+  <div class="card">
+    <div class="card-head"><i class="ti ti-barbell" aria-hidden="true"></i>Push day — chest · shoulders · triceps</div>
+    <div class="ex-block">
+      <div class="ex-title">Chest <span class="badge bb">primary</span></div>
+      <div class="ex-row"><div class="ex-name">Flat barbell bench press</div><div class="ex-sets">4 sets × 8–10 reps</div></div>
+      <div class="ex-row"><div class="ex-name">Incline dumbbell press</div><div class="ex-sets">3 sets × 10–12 reps</div></div>
+      <div class="ex-row"><div class="ex-name">Cable chest fly</div><div class="ex-sets">3 sets × 12–15 reps</div></div>
+    </div>
+    <div class="ex-block">
+      <div class="ex-title">Shoulders <span class="badge bg">primary</span></div>
+      <div class="ex-row"><div class="ex-name">Seated dumbbell shoulder press</div><div class="ex-sets">4 sets × 10 reps</div></div>
+      <div class="ex-row"><div class="ex-name">Lateral raises</div><div class="ex-sets">4 sets × 15 reps</div></div>
+      <div class="ex-row"><div class="ex-name">Front raises</div><div class="ex-sets">3 sets × 12 reps</div></div>
+    </div>
+    <div class="ex-block">
+      <div class="ex-title">Triceps</div>
+      <div class="ex-row"><div class="ex-name">Tricep pushdown (cable)</div><div class="ex-sets">3 sets × 12 reps</div></div>
+      <div class="ex-row"><div class="ex-name">Overhead tricep extension</div><div class="ex-sets">3 sets × 12 reps</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head"><i class="ti ti-barbell" aria-hidden="true"></i>Pull day — back · biceps · rear delts</div>
+    <div class="ex-block">
+      <div class="ex-title">Back <span class="badge bb">primary</span></div>
+      <div class="ex-row"><div class="ex-name">Deadlift</div><div class="ex-sets">4 sets × 6–8 reps</div></div>
+      <div class="ex-row"><div class="ex-name">Seated cable row</div><div class="ex-sets">4 sets × 10–12 reps</div></div>
+      <div class="ex-row"><div class="ex-name">Lat pulldown</div><div class="ex-sets">4 sets × 10–12 reps</div></div>
+      <div class="ex-row"><div class="ex-name">Single arm dumbbell row</div><div class="ex-sets">3 sets × 12 reps</div></div>
+    </div>
+    <div class="ex-block">
+      <div class="ex-title">Biceps + Rear delts</div>
+      <div class="ex-row"><div class="ex-name">Barbell curl</div><div class="ex-sets">3 sets × 10–12 reps</div></div>
+      <div class="ex-row"><div class="ex-name">Hammer curl</div><div class="ex-sets">3 sets × 12 reps</div></div>
+      <div class="ex-row"><div class="ex-name">Face pulls (cable)</div><div class="ex-sets">3 sets × 15 reps</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head"><i class="ti ti-barbell" aria-hidden="true"></i>Leg day — quads · hamstrings · calves · core</div>
+    <div class="ex-block">
+      <div class="ex-title">Legs <span class="badge ba">heavy</span></div>
+      <div class="ex-row"><div class="ex-name">Barbell squat</div><div class="ex-sets">4 sets × 8–10 reps</div></div>
+      <div class="ex-row"><div class="ex-name">Romanian deadlift</div><div class="ex-sets">4 sets × 10 reps</div></div>
+      <div class="ex-row"><div class="ex-name">Leg press</div><div class="ex-sets">3 sets × 12 reps</div></div>
+      <div class="ex-row"><div class="ex-name">Leg curl (machine)</div><div class="ex-sets">3 sets × 12 reps</div></div>
+      <div class="ex-row"><div class="ex-name">Standing calf raises</div><div class="ex-sets">4 sets × 20 reps</div></div>
+    </div>
+    <div class="ex-block">
+      <div class="ex-title">Core (Saturday only)</div>
+      <div class="ex-row"><div class="ex-name">Plank</div><div class="ex-sets">3 × 45 sec</div></div>
+      <div class="ex-row"><div class="ex-name">Hanging leg raises</div><div class="ex-sets">3 sets × 15 reps</div></div>
+      <div class="ex-row"><div class="ex-name">Cable crunches</div><div class="ex-sets">3 sets × 15 reps</div></div>
+      <div class="ex-row"><div class="ex-name">HIIT cardio (treadmill sprints)</div><div class="ex-sets">15 min</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="exercises" class="sec">
+  <div class="card">
+    <div class="card-head"><i class="ti ti-info-circle" aria-hidden="true"></i>How to train for athletic look</div>
+    <ul class="li">
+      <li>Rest 60–90 sec between sets — not more. Keeping rest short burns fat while building muscle.</li>
+      <li>Progressive overload — every week add 1–2 reps OR 2.5kg more weight on at least one exercise</li>
+      <li>Mind-muscle connection — feel the muscle working, don't just move the weight</li>
+      <li>Last 2 reps of every set should feel hard — if not, increase weight</li>
+      <li>Warm up 5 min before every session — light cardio + arm circles + leg swings</li>
+      <li>Never skip legs — legs release the most testosterone, which grows ALL muscles</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-head"><i class="ti ti-phases" aria-hidden="true"></i>53-day progression plan</div>
+    <div class="phase">
+      <div class="ph-title">Phase 1 — Foundation <span class="badge bg">Days 1–18</span></div>
+      <div class="ph-sub">Learn form. Build the habit. Start light.</div>
+      <ul class="li">
+        <li>Focus 80% on form — watch YouTube tutorials for each exercise</li>
+        <li>Use moderate weight, 10–12 reps, full range of motion</li>
+        <li>Soreness is normal — push through it</li>
+      </ul>
+    </div>
+    <div class="phase b">
+      <div class="ph-title">Phase 2 — Build <span class="badge bb">Days 19–38</span></div>
+      <div class="ph-sub">Increase weight every week. Push harder.</div>
+      <ul class="li">
+        <li>Add weight every 5–7 days on compound lifts (bench, squat, deadlift)</li>
+        <li>Drop sets on final set of each exercise — push to failure</li>
+        <li>Body will visibly start changing in this phase</li>
+      </ul>
+    </div>
+    <div class="phase c">
+      <div class="ph-title">Phase 3 — Define <span class="badge ba">Days 39–53</span></div>
+      <div class="ph-sub">Lean out. Show the muscle.</div>
+      <ul class="li">
+        <li>Slightly reduce calories (200 less per day) to reveal muscle definition</li>
+        <li>Add 10 min HIIT cardio after every session</li>
+        <li>Higher reps (12–15) with shorter rest to cut fat</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="diet" class="sec">
+  <div class="metrics">
+    <div class="m"><div class="n">2,400</div><div class="l">Calories/day</div></div>
+    <div class="m"><div class="n">150g</div><div class="l">Protein</div></div>
+    <div class="m"><div class="n">60g</div><div class="l">Fat</div></div>
+  </div>
+  <div class="card">
+    <div class="card-head"><i class="ti ti-clock" aria-hidden="true"></i>Full day meal plan</div>
+    <div class="meal-row">
+      <div class="meal-time">6:00 AM</div>
+      <div class="meal-food">Pre-workout<span>500ml water + 5 soaked almonds + 2 walnuts</span></div>
+      <div class="meal-cal">~80 kcal</div>
+    </div>
+    <div class="meal-row">
+      <div class="meal-time">7:00 AM</div>
+      <div class="meal-food">Breakfast<span>5 whole eggs (boiled/scrambled) + 1 cup oats with banana + black coffee (no sugar)</span></div>
+      <div class="meal-cal">~550 kcal</div>
+    </div>
+    <div class="meal-row">
+      <div class="meal-time">10:30 AM</div>
+      <div class="meal-food">Mid-morning snack<span>100g paneer or 1 cup Greek yogurt + 1 fruit (apple/banana)</span></div>
+      <div class="meal-cal">~250 kcal</div>
+    </div>
+    <div class="meal-row">
+      <div class="meal-time">1:00 PM</div>
+      <div class="meal-food">Lunch<span>2 rotis + 1 bowl dal or rajma + 100g chicken/paneer + sabzi + curd</span></div>
+      <div class="meal-cal">~650 kcal</div>
+    </div>
+    <div class="meal-row">
+      <div class="meal-time">4:30 PM</div>
+      <div class="meal-food">Pre-gym meal<span>1 banana + 4 boiled eggs (whites only) OR peanut butter on 2 bread slices</span></div>
+      <div class="meal-cal">~300 kcal</div>
+    </div>
+    <div class="meal-row">
+      <div class="meal-time">Post-gym</div>
+      <div class="meal-food">Post-workout<span>Whey protein shake (if available) OR 6 egg whites + 1 banana</span></div>
+      <div class="meal-cal">~250 kcal</div>
+    </div>
+    <div class="meal-row">
+      <div class="meal-time">7:30 PM</div>
+      <div class="meal-food">Dinner<span>1 roti + 150g chicken/fish/paneer + large vegetable sabzi + salad</span></div>
+      <div class="meal-cal">~500 kcal</div>
+    </div>
+    <div class="meal-row">
+      <div class="meal-time">9:30 PM</div>
+      <div class="meal-food">Before sleep<span>1 glass warm milk OR 6 boiled egg whites (slow protein for overnight recovery)</span></div>
+      <div class="meal-cal">~120 kcal</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head"><i class="ti ti-ban" aria-hidden="true"></i>Strictly avoid</div>
+    <ul class="li">
+      <li>All fried food — samosa, chips, puri, bhajji</li>
+      <li>Sugar — cold drinks, biscuits, sweets, chai with sugar</li>
+      <li>Maida — white bread, naan, pizza, bakery items</li>
+      <li>Alcohol — kills testosterone, destroys muscle recovery</li>
+      <li>Eating after 9 PM — body stores it as fat</li>
+      <li>Skipping meals — leads to muscle loss, not fat loss</li>
+    </ul>
+  </div>
+</div>
+
+<div id="tips" class="sec">
+  <div class="card">
+    <div class="card-head"><i class="ti ti-bulb" aria-hidden="true"></i>Golden rules for athletic body</div>
+    <div class="tip-row"><i class="ti ti-droplet tip-icon" aria-hidden="true"></i><div><div class="tip-text">Drink 4 litres of water daily</div><div class="tip-sub">Muscles are 75% water. Dehydration = weak lifts, slow recovery, bad skin.</div></div></div>
+    <div class="tip-row"><i class="ti ti-moon tip-icon" aria-hidden="true"></i><div><div class="tip-text">Sleep 8 hours — this is when you actually grow</div><div class="tip-sub">Muscle is built during sleep, not in the gym. No sleep = no results no matter how hard you train.</div></div></div>
+    <div class="tip-row"><i class="ti ti-repeat tip-icon" aria-hidden="true"></i><div><div class="tip-text">Consistency over intensity</div><div class="tip-sub">Showing up every day at 70% beats going 100% twice a week then disappearing.</div></div></div>
+    <div class="tip-row"><i class="ti ti-scale tip-icon" aria-hidden="true"></i><div><div class="tip-text">Don't obsess over the scale</div><div class="tip-sub">You will gain muscle AND lose fat. Weight may stay same but your body will look completely different.</div></div></div>
+    <div class="tip-row"><i class="ti ti-camera tip-icon" aria-hidden="true"></i><div><div class="tip-text">Take photos every 2 weeks</div><div class="tip-sub">Progress photos show changes the mirror hides. Day 1, Day 18, Day 36, Day 53.</div></div></div>
+    <div class="tip-row"><i class="ti ti-egg tip-icon" aria-hidden="true"></i><div><div class="tip-text">Eggs are your best friend</div><div class="tip-sub">Cheapest, best protein source available in India. Eat 6–8 per day minimum.</div></div></div>
+    <div class="tip-row"><i class="ti ti-heart-rate-monitor tip-icon" aria-hidden="true"></i><div><div class="tip-text">Warm up. Cool down. Stretch.</div><div class="tip-sub">One injury can set you back 2–3 weeks. 5 min warm up before, 5 min stretch after — every single session.</div></div></div>
+  </div>
+</div>
+</div>
+
+<script>
+function show(id,btn){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
